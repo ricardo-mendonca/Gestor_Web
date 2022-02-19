@@ -1,0 +1,7 @@
+<div class="uk-container">
+    <div>
+        <ul class="uk-list uk-list-striped">
+            <li *ngFor="let categoria of categoria$ | async">{{categoria.id}} {{ categoria.ds_descricao }}</li>
+        </ul>
+    </div>
+</div>
