@@ -7,6 +7,7 @@ import { CategoriaPageComponent } from './pages/Despesa/categoria-page/categoria
 import { DespesaPageComponent } from './pages/Despesa/despesa-page/despesa-page.component';
 import { FramePageComponent } from './pages/master/frame.page';
 
+
 const routes: Routes = [
   { path:'', component: FramePageComponent },
   {

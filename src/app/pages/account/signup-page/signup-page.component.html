@@ -1,79 +1,67 @@
-<div class="uk-flex-center uk-grid">
-    <div class="uk-width-1-3@m">
-      <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
-        <span class="uk-icon uk-margin-small-right" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
-      </p>
-  
-      
-  
-      <form >
-        <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
-          <h3 class="uk-card-title">Cadastre-se</h3>
-          
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="ds_nome" type="text" placeholder="Nome">
-          </div>
-
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="ds_email" type="email" placeholder="E-mail">
-          </div>
-
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="ds_telefone" type="text" placeholder="ds_telefone">
-          </div>
-
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="dt_nascimento" type="text" placeholder="dt_nascimento">
-          </div>
+<div class="uk-container">
+  <p class="uk-text-center uk-margin-large-top uk-margin-medium-bottom">
+    <span class="uk-icon uk-margin-small-right" uk-icon="icon: logo-color-dark; ratio: 0.7"></span>
+  </p>
 
 
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="cd_cpf" type="text" placeholder="CPF">
-          </div>
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="cd_rg" type="text" placeholder="RG">
-          </div>
+  <form class="uk-grid-small" uk-grid>
+    <h3 class="uk-card-title">Cadastre-se</h3>
+    <P></P>
 
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="ds_senha" type="password" placeholder="Senha">
-          </div>
-
-
-
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="cd_cep" type="text" placeholder="cd_cep">
-          </div>
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="ds_endereco" type="text" placeholder="ds_endereco">
-          </div>
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="ds_complemento" type="text" placeholder="ds_complemento">
-          </div>
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="nr_endereco" type="text" placeholder="nr_endereco">
-          </div>
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="ds_bairro" type="text" placeholder="ds_bairro">
-          </div>
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="ds_cidade" type="text" placeholder="ds_cidade">
-          </div>
-          <div class="uk-margin">
-            <input class="uk-input uk-form-large" formControlName="cd_uf" type="text" placeholder="cd_uf">
-          </div>
-
-
-
-
-
-          <div class="uk-margin uk-text-right">
-            <button class="uk-button uk-button-default" >Cadastrar</button>
-          </div>
-        </div>
-      </form>
-  
-      <p class="uk-text-center" >
-        <a [routerLink]="['/login']"  class="uk-button uk-button-link">Cancelar</a>
-      </p>
+    <div class="uk-width-1-1@s">
+      <input class="uk-input" formControlName="ds_nome" type="text" placeholder="Nome">
     </div>
-  </div>
+
+    <div class="uk-width-1-4@s">
+      <input class="uk-input" formControlName="ds_email" type="ds_email" placeholder="informe seu e-mail...">
+    </div>
+    <div class="uk-width-1-5@s">
+      <input class="uk-input" formControlName="ds_telefone" type="text" placeholder="celular">
+    </div>
+    <div class="uk-width-1-6@s">
+      <input class="uk-input" formControlName="dt_nascimento" type="text" placeholder="Data Nascimento">
+    </div>
+    <div class="uk-width-1-6@s">
+      <input class="uk-input" formControlName="cd_cpf" type="text" placeholder="CPF">
+    </div>
+    <div class="uk-width-1-6@s">
+      <input class="uk-input " formControlName="cd_rg" type="text" placeholder="RG">
+    </div>
+
+    <div class="uk-width-1-6@s">
+      <input class="uk-input " formControlName="ds_senha" type="password" placeholder="Senha">
+    </div>
+    <div class="uk-width-1-1@s"></div>
+    <div class="uk-width-1-6@s">
+      <input class="uk-input " formControlName="cd_cep" type="text" placeholder="CEP">
+    </div>
+    <div class="uk-width-1-3@s">
+      <input class="uk-input " formControlName="ds_endereco" type="text" placeholder="Endereço">
+    </div>
+    <div class="uk-width-1-4@s">
+      <input class="uk-input " formControlName="ds_complemento" type="text" placeholder="Complemento">
+    </div>
+    <div class="uk-width-1-5@s">
+      <input class="uk-input " formControlName="nr_endereco" type="text" placeholder="Número">
+    </div>
+    <div class="uk-width-1-5@s">
+      <input class="uk-input " formControlName="ds_bairro" type="text" placeholder="Bairro">
+    </div>
+    <div class="uk-width-1-4@s">
+      <input class="uk-input " formControlName="ds_cidade" type="text" placeholder="Cidade">
+    </div>
+    <div class="uk-width-1-6@s">
+      <input class="uk-input " formControlName="cd_uf" type="text" placeholder="Estado">
+    </div>
+
+    <div class="uk-width-1-1@s uk-text-center">
+
+      <button class="uk-button uk-button-primary .uk-text-center">Cadastrar</button>
+    </div>
+
+
+    <div class="uk-width-1-1@s uk-text-center">
+      <a [routerLink]="['/login']" class="uk-button uk-button-link .uk-text-center">Cancelar</a>
+    </div>
+  </form>
+</div>
