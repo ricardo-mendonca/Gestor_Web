@@ -13,6 +13,7 @@ import { FramePageComponent } from './pages/master/frame.page';
 import { CategoriaPageComponent } from './pages/Despesa/categoria-page/categoria-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './Components/shared/loading/loading.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,10 @@ import { LoadingComponent } from './Components/shared/loading/loading.component'
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
