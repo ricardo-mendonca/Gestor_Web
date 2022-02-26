@@ -1,11 +1,16 @@
 <div class="uk-container">
-
-    <div class="uk-container">
-        <div>
-            <ul class="uk-list uk-list-striped">
-                <li *ngFor="let despesa of despesa$ | async">{{despesa.id}} {{ despesa.ds_descricao }}</li>
-            </ul>
-        </div>
+<br>
+   
+<div class="uk-child-width-expand@s uk-text-center" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body">Item</div>
     </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body">Item</div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body">Item</div>
+    </div>
+</div>
 
 </div>

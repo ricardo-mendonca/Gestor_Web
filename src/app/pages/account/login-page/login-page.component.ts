@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/models/usuario.model';
+
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -34,6 +34,7 @@ export class LoginPageComponent implements OnInit {
 
 
   submit() {
+    this.busy=true;
     this
       .service
       .authenticate(this.form.value)
@@ -43,9 +44,11 @@ export class LoginPageComponent implements OnInit {
           console.log(data.ds_nome);
           localStorage.setItem('gestor.token', data.token);
           localStorage.setItem('gestor.user', data.user.ds_nome);
+          this.busy=false;
         },
         (err) => {
-          console.log(err)
+          console.log(err);
+          this.busy=false;
         }
       );
   }
