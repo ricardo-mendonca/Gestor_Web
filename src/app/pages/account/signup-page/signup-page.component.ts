@@ -78,6 +78,11 @@ cd_uf: ['', Validators.compose([
   Validators.maxLength(20),
   Validators.required
 ])],
+dt_nascimento: ['', Validators.compose([
+  Validators.minLength(4),
+  Validators.maxLength(20),
+  Validators.required
+])]
 
     })
   }
