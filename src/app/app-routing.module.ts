@@ -6,13 +6,16 @@ import { SignupPageComponent } from './pages/account/signup-page/signup-page.com
 import { CategoriaPageComponent } from './pages/Despesa/categoria-page/categoria-page.component';
 import { DespesaPageComponent } from './pages/Despesa/despesa-page/despesa-page.component';
 import { FramePageComponent } from './pages/master/frame.page';
+import { AuthService } from './services/auth.service';
 
 
 const routes: Routes = [
-  { path:'', component: FramePageComponent },
+  { path:'', component: FramePageComponent ,
+    canActivate: [AuthService]},
   {
     path: 'despesa',
     component: FramePageComponent,
+    canActivate: [AuthService],
     children: [
         { path:'consulta', component: DespesaPageComponent },      
     ]
@@ -20,6 +23,7 @@ const routes: Routes = [
   {
     path: 'categoria',
     component: FramePageComponent,
+    canActivate: [AuthService],
     children: [
         { path:'consulta', component: CategoriaPageComponent },      
     ]

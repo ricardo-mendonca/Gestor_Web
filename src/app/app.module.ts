@@ -14,6 +14,8 @@ import { CategoriaPageComponent } from './pages/Despesa/categoria-page/categoria
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './Components/shared/loading/loading.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { DataService } from './services/data.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { NgxMaskModule } from 'ngx-mask';
       dropSpecialCharacters: false
     }),
   ],
-  providers: [],
+  providers: [DataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
