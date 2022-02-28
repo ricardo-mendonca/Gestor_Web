@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/usuario.model';
 
 import { DataService } from 'src/app/services/data.service';
@@ -18,7 +19,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private router: Router,
     private service: DataService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.form = this.fb.group({
       ds_email: ['', Validators.compose([
@@ -59,7 +61,6 @@ export class LoginPageComponent implements OnInit {
     this
       .service
       .authenticate(this.form.value)
-
       .subscribe(
         (data: any) => {
           this.busy=false;
@@ -67,7 +68,9 @@ export class LoginPageComponent implements OnInit {
         },
         (err) => {
           console.log(err);
+          
           this.busy=false;
+          this.toastr.error('usuário ou senha inválido!','OPS!!!!');
         }
       );
   }
