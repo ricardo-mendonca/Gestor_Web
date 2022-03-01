@@ -25,15 +25,7 @@ public composeHeaders() {
         return this.http.post(`${this.url}/login`, data);
     }
 
-    CreateUsuario(data: any){
-       
-      data.cd_cpf = data.cd_cpf.replace('.', '').replace('.', '').replace('-', '') ;
-
-      console.log('cadastrar');
-      console.log(data);
-
-        return this.http.post(`${this.url}/CreateUsuario`, data);
-    }
+    
     
     refreshToken(){
         return this.http.post(`${this.url}/refresh-token`, 
@@ -49,7 +41,20 @@ public composeHeaders() {
         return this.http.get<Despesa[]>(`${this.url}/GetCategoria`)
     }
 
-   
+    CreateUsuario(data: any){
+       
+        data.cd_cpf = data.cd_cpf.replace('.', '').replace('.', '').replace('-', '') ;
+  
+        console.log('cadastrar');
+        console.log(data);
+  
+          return this.http.post(`${this.url}/CreateUsuario`, data);
+      }
+
+
+      resetPassword(data: any){
+        return this.http.post(`${this.url}/ResetPassword`, data);
+      }
 }
 
 
