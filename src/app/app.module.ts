@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './Components/shared/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { ResetPasswordPageComponent } from './pages/account/reset-password-page/reset-password-page.component';
 import { SignupPageComponent } from './pages/account/signup-page/signup-page.component';
@@ -14,6 +16,8 @@ import { CategoriaPageComponent } from './pages/Despesa/categoria-page/categoria
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './Components/shared/loading/loading.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { DataService } from './services/data.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -25,18 +29,21 @@ import { NgxMaskModule } from 'ngx-mask';
     DespesaPageComponent,
     FramePageComponent,
     CategoriaPageComponent,
-    LoadingComponent
+    LoadingComponent, 
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(),
     AppRoutingModule,
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false
     }),
+    
   ],
-  providers: [],
+  providers: [DataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

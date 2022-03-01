@@ -1,13 +1,17 @@
 <section class="vh-220" style="background-color: #508bfc;">
-  <div class=" h-100">
+  <div class="h-100">
     <div class="row  justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-8">
         <br>
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
-            <h3 class="mb-5">Cadastre-se</h3>
-            <form [formGroup]="form">
-             
+          <div class="card-body p-5 text-center">          
+            
+            <app-loading *ngIf="busy"></app-loading>      
+
+            <form [formGroup]="form" *ngIf="!busy">
+            
+              <h3 class="mb-5"ng>Cadastre-se</h3>
+
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" formControlName="ds_nome" placeholder="name">
                 <label for="floatingInput">Nome</label>
@@ -21,7 +25,7 @@
               <div class="row mb-1">
                 <div class="col">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" mask="CPF_CNPJ" formControlName="cd_cpf" placeholder="000.000.000-00">
+                    <input type="text" class="form-control" mask="CPF_CNPJ" formControlName="cd_cpf" placeholder="0000000">
                     <label for="floatingInput">CPF</label>
                   </div>
                 </div>
@@ -42,7 +46,7 @@
                 </div>
                 <div class="col">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" mask="00/00/0000" formControlName="dt_nascimento" placeholder="00/00/0000">
+                    <input type="date" class="form-control"  formControlName="dt_nascimento" placeholder="00/00/0000">
                     <label for="floatingInput">Nascimento</label>
                   </div>
                 </div>
@@ -65,7 +69,7 @@
               <div class="row mb-1">
                 <div class="col">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control"mask="00000-000" formControlName="cd_cep"  placeholder="00000-000">
+                    <input type="text" class="form-control" mask="00000-000" formControlName="cd_cep"  placeholder="00000-000">
                     <label for="floatingInput">CEP</label>
                   </div>
                 </div>
@@ -109,7 +113,6 @@
                   </div>
                 </div>
                 <div class="col">
-                  
                   <div class="form-floating mb-3">
                     <input type="text" class="form-control"  formControlName="cd_uf"  placeholder="SP">
                     <label for="floatingInput">Estado</label>
@@ -117,7 +120,9 @@
                 </div>
               </div>
 
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar</button>
+              <!--<button class="btn btn-primary btn-lg btn-block"  (click)="Cadastrar()">Cadastrar</button>-->
+              <button class="w-100 btn btn-primary btn-lg btn-block" [disabled]="form.invalid"
+                (click)="Cadastrar()">Entrar</button>
             </form>
             <hr class="my-4">
 

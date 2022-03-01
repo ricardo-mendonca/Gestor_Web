@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { User } from 'src/app/models/usuario.model';
 
 import { DataService } from 'src/app/services/data.service';
+import { Security } from 'src/app/utils/security.util';
 
 @Component({
   selector: 'app-login-page',
@@ -13,8 +17,10 @@ export class LoginPageComponent implements OnInit {
   public busy = false;
 
   constructor(
+    private router: Router,
     private service: DataService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.form = this.fb.group({
       ds_email: ['', Validators.compose([
@@ -29,7 +35,24 @@ export class LoginPageComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    const token = Security.getToken();
+    if (token) {
+      this.busy = true;
+      this
+        .service
+        .refreshToken()
+        .subscribe(
+          (data: any) => {
+            this.busy = false;
+            this.setUser(data.user, data.token);
+          },
+          (err) => {
+            localStorage.clear();
+            this.busy = false;
+          }
+        );
+    }
   }
 
 
@@ -40,18 +63,21 @@ export class LoginPageComponent implements OnInit {
       .authenticate(this.form.value)
       .subscribe(
         (data: any) => {
-          console.log(data);
-          console.log(data.ds_nome);
-          localStorage.setItem('gestor.token', data.token);
-          localStorage.setItem('gestor.user', data.user.ds_nome);
           this.busy=false;
+          this.setUser(data.user, data.token);         
         },
         (err) => {
           console.log(err);
+          
           this.busy=false;
+          this.toastr.error('usuário ou senha inválido!','OPS!!!!');
         }
       );
   }
 
+  setUser(user: User,token: string){
+       Security.set( user, token);
+    this.router.navigate(['/'])
+  }
 
 }
