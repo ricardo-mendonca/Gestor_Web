@@ -18,6 +18,7 @@ import { LoadingComponent } from './Components/shared/loading/loading.component'
 import { NgxMaskModule } from 'ngx-mask';
 import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
+import { UserPageComponent } from './pages/account/user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthService } from './services/auth.service';
     DespesaPageComponent,
     FramePageComponent,
     CategoriaPageComponent,
-    LoadingComponent, 
+    LoadingComponent,
+    UserPageComponent, 
   ],
   imports: [
     BrowserModule,
