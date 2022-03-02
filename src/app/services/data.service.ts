@@ -63,7 +63,7 @@ export class DataService {
     //#region DESPESAS
 
     getDespesas() {
-        return this.http.get<Despesa[]>(`${this.url}/GetCategoria`)
+        return this.http.get<Despesa[]>(`${this.url}/GetDespesas`, { headers: this.composeHeaders() })
     }
 
     //#endregion
