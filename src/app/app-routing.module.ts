@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './pages/account/login-page/login-page.component';
 import { ResetPasswordPageComponent } from './pages/account/reset-password-page/reset-password-page.component';
 import { SignupPageComponent } from './pages/account/signup-page/signup-page.component';
+import { UserPageComponent } from './pages/account/user-page/user-page.component';
 import { CategoriaPageComponent } from './pages/Despesa/categoria-page/categoria-page.component';
 import { DespesaPageComponent } from './pages/Despesa/despesa-page/despesa-page.component';
 import { FramePageComponent } from './pages/master/frame.page';
@@ -26,6 +27,14 @@ const routes: Routes = [
     canActivate: [AuthService],
     children: [
         { path:'consulta', component: CategoriaPageComponent },      
+    ]
+  },
+  {
+    path: 'account',
+    component: FramePageComponent,
+    canActivate: [AuthService],
+    children: [
+        { path:'', component: UserPageComponent },      
     ]
   },
   { path:'login', component: LoginPageComponent },

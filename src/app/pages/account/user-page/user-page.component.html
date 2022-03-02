@@ -1,0 +1,136 @@
+<section class="vh-220" style="background-color: #508bfc;">
+    <div class="h-100">
+      <div class="row  justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-8">
+          <br>
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">          
+              
+              <app-loading *ngIf="busy"></app-loading>      
+  
+              <form [formGroup]="form" *ngIf="!busy">
+              
+                <h3 class="mb-5"ng>Atualizar cadastro</h3>
+  
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" formControlName="ds_nome" placeholder="name">
+                  <label for="floatingInput">Nome</label>
+                </div>
+  
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" formControlName="ds_email" placeholder="name@example.com">
+                  <label for="floatingInput">Email</label>
+                </div>
+  
+                <div class="row mb-1">
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" mask="CPF_CNPJ" formControlName="cd_cpf" placeholder="0000000">
+                      <label for="floatingInput">CPF</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" formControlName="cd_rg" placeholder="00.000.000-0">
+                      <label for="floatingInput">RG</label>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row mb-1">
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" mask="(00) 00000-0000" formControlName="ds_telefone" placeholder="00.000.000-0">
+                      <label for="floatingInput">Celular</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" mask="00/00/0000" formControlName="dt_nascimento" placeholder="00/00/0000">
+                      <label for="floatingInput">Nascimento</label>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row mb-1">
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control" formControlName="ds_senha" placeholder="123456">
+                      <label for="floatingInput">Senha</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-outline">
+  
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row mb-1">
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" mask="00000-000" formControlName="cd_cep"  placeholder="00000-000">
+                      <label for="floatingInput">CEP</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-outline">
+  
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control"  formControlName="ds_endereco"  placeholder="rua x">
+                  <label for="floatingInput">Endereço</label>
+                </div>
+  
+                <div class="row mb-1">
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control"  formControlName="nr_endereco"  placeholder="rua x">
+                      <label for="floatingInput">Número</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control"  formControlName="ds_complemento"  placeholder="rua x">
+                      <label for="floatingInput">Complemento</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control"  formControlName="ds_bairro"  placeholder="rua x">
+                  <label for="floatingInput">Bairro</label>
+                </div>
+  
+                <div class="row mb-1">
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control"  formControlName="ds_cidade"  placeholder="rua x">
+                      <label for="floatingInput">Cidade</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control"  formControlName="cd_uf"  placeholder="SP">
+                      <label for="floatingInput">Estado</label>
+                    </div>
+                  </div>
+                </div>
+  
+                <!--<button class="btn btn-primary btn-lg btn-block"  (click)="Cadastrar()">Cadastrar</button>-->
+                <button class="w-100 btn btn-primary btn-lg btn-block"  (click)="submit()">Salvar</button>
+              </form>
+              <hr class="my-4">
+  
+              <a [routerLink]="['/']" class="w-100 btn btn-lg btn-danger">Voltar</a>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </section>

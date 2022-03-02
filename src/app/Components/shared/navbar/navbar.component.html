@@ -23,14 +23,14 @@
     </div>
     <div class="collapse navbar-collapse">
       <div class="container d-flex flex-wrap justify-content-center">
-        <div class="text-end">
-          
-          <a>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+          <a [routerLink]="['/account']" class="nav-link active"  >
              {{user?.ds_nome}}
           </a>
-          
+        </li>
           <a (click)="logout()" class="btn btn-outline-danger" >Sair</a>
-        </div>
+        </ul>
       </div>
     </div>
   </div>

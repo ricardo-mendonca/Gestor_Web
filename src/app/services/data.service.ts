@@ -1,60 +1,81 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Despesa } from '../pages/model/despesa.model';
+import { Security } from '../utils/security.util';
 
 @Injectable({
     providedIn: 'root'
 })
-export class DataService{
+export class DataService {
     subscribe(arg0: (data: any) => void, arg1: () => void) {
-      throw new Error('Method not implemented.');
+        throw new Error('Method not implemented.');
     }
 
     public url = 'https://localhost:44308/v1';
 
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient) { }
 
-public composeHeaders() {
-    const token= localStorage.getItem('gestor.token');
-    const headers = new HttpHeaders().set('Authorization', `bearer ${token}`);
-    return headers;
-}
+    public composeHeaders() {
+        const token = Security.getToken();
+        const headers = new HttpHeaders().set('Authorization', `bearer ${token}`);
+        return headers;
+    }
 
+    //#region Login account
 
-    authenticate(data: any){
+    CreateUsuario(data: any) {
+        data.cd_cpf = data.cd_cpf.replace('.', '').replace('.', '').replace('-', '');
+        return this.http.post(`${this.url}/CreateUsuario`, data);
+    }
+
+    authenticate(data: any) {
         return this.http.post(`${this.url}/login`, data);
     }
 
-    
-    
-    refreshToken(){
-        return this.http.post(`${this.url}/refresh-token`, 
+    refreshToken() {
+        return this.http.post(`${this.url}/refresh-token`,
             null,
             { headers: this.composeHeaders() });
     }
 
-    getCategoria(){
-        return this.http.get<any[]>( `${this.url}/GetCategoria`)
+    resetPassword(data: any) {
+        return this.http.post(`${this.url}/ResetPassword`, data);
     }
 
-    getDespesas(){
+    getUsuario(){
+        return this.http.get(`${this.url}/getUsuario`,{ headers: this.composeHeaders() } );
+    }
+
+    updateUsuario(data: any){
+        return this.http.put(`${this.url}/updateUsuario`, data,{ headers: this.composeHeaders() })
+    }
+
+
+    //#endregion
+
+    //#region Categoria
+    getCategoria() {
+        return this.http.get<any[]>(`${this.url}/GetCategoria`)
+    }
+
+    //#endregion
+
+    //#region DESPESAS
+
+    getDespesas() {
         return this.http.get<Despesa[]>(`${this.url}/GetCategoria`)
     }
 
-    CreateUsuario(data: any){
-       
-        data.cd_cpf = data.cd_cpf.replace('.', '').replace('.', '').replace('-', '') ;
-  
-        console.log('cadastrar');
-        console.log(data);
-  
-          return this.http.post(`${this.url}/CreateUsuario`, data);
-      }
+    //#endregion
 
 
-      resetPassword(data: any){
-        return this.http.post(`${this.url}/ResetPassword`, data);
-      }
+
+
+
+
+
+
+
 }
 
 
