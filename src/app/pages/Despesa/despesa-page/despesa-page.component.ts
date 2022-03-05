@@ -24,47 +24,45 @@ export class DespesaPageComponent implements OnInit {
     private service: DataService,
     private fb: FormBuilder,
     private toastr: ToastrService
-  ){
+  ) {
     this.form = this.fb.group({
-      
+
       cd_mes: [moment().format('MM')],
       cd_ano: [moment().format('YYYY')]
     });
   }
 
   ngOnInit() {
-    
-    this.despesa$ =  this.data.getDespesas(this.form.value);
+
+    this.despesa$ = this.data.getDespesas(this.form.value);
   }
 
-  submit(){
+  submit() {
     console.log("teste");
     console.log(this.form.value);
 
     this.busy = true;
-    this.despesa$ =  this.data.getDespesas(this.form.value);
+    this.despesa$ = this.data.getDespesas(this.form.value);
     this.busy = false;
   }
 
   baixar($event: any, despesa: Despesa) {
     console.log("geral");
     $event.preventDefault();
-    (alert("deseja alterar para pago?" + despesa.ds_descricao +" - " + despesa.id));
+    (alert("deseja alterar para pago?" + despesa.ds_descricao + " - " + despesa.id));
     console.log("baixou");
   }
 
   deletar($event: any, despesa: Despesa) {
     console.log("geral");
     $event.preventDefault();
-    (alert("deseja exluir?" + despesa.ds_descricao +" - " + despesa.id));
+    (alert("deseja exluir?" + despesa.ds_descricao + " - " + despesa.id));
     console.log("baixou");
   }
 
   novaDespesa() {
-    
-    
-    (alert("Criar nova despesa?" ));
+
     this.router.navigate(['/despesa/novadespesa'])
-    
+
   }
 }
