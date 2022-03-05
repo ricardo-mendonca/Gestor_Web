@@ -19,6 +19,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
 import { UserPageComponent } from './pages/account/user-page/user-page.component';
+import { NovaDespesaPageComponent } from './pages/Despesa/nova-despesa-page/nova-despesa-page.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { UserPageComponent } from './pages/account/user-page/user-page.component
     FramePageComponent,
     CategoriaPageComponent,
     LoadingComponent,
-    UserPageComponent, 
+    UserPageComponent,
+    NovaDespesaPageComponent, 
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import { UserPageComponent } from './pages/account/user-page/user-page.component
     }),
     
   ],
-  providers: [DataService, AuthService],
+  providers: [DataService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -47,7 +47,7 @@ export class DataService {
     }
 
     updateUsuario(data: any){
-        return this.http.put(`${this.url}/updateUsuario`, data,{ headers: this.composeHeaders() })
+        return this.http.put(`${this.url}/updateUsuario`, data,{ headers: this.composeHeaders() });
     }
 
 
@@ -62,8 +62,10 @@ export class DataService {
 
     //#region DESPESAS
 
-    getDespesas() {
-        return this.http.get<Despesa[]>(`${this.url}/GetDespesas`, { headers: this.composeHeaders() })
+    getDespesas(data: any) {
+console.log("getdespesa");
+console.log(data);
+        return this.http.post(`${this.url}/GetDespesas`,data,{ headers: this.composeHeaders() });
     }
 
     //#endregion

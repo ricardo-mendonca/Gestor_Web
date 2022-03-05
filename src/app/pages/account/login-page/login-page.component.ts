@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/usuario.model';
 
@@ -57,26 +58,26 @@ export class LoginPageComponent implements OnInit {
 
 
   submit() {
-    this.busy=true;
+    this.busy = true;
     this
       .service
       .authenticate(this.form.value)
       .subscribe(
         (data: any) => {
-          this.busy=false;
-          this.setUser(data.user, data.token);         
+          this.busy = false;
+          this.setUser(data.user, data.token);
         },
         (err) => {
           console.log(err);
-          
-          this.busy=false;
-          this.toastr.error('usuário ou senha inválido!','OPS!!!!');
+
+          this.busy = false;
+          this.toastr.error('usuário ou senha inválido!', 'OPS!!!!');
         }
       );
   }
 
-  setUser(user: User,token: string){
-       Security.set( user, token);
+  setUser(user: User, token: string) {
+    Security.set(user, token);
     this.router.navigate(['/'])
   }
 
