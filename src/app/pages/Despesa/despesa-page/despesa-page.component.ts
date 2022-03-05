@@ -46,17 +46,10 @@ export class DespesaPageComponent implements OnInit {
     this.busy = false;
   }
 
-  baixar($event: any, despesa: Despesa) {
+  editar($event: any, despesa: Despesa) {
     console.log("geral");
     $event.preventDefault();
     (alert("deseja alterar para pago?" + despesa.ds_descricao + " - " + despesa.id));
-    console.log("baixou");
-  }
-
-  deletar($event: any, despesa: Despesa) {
-    console.log("geral");
-    $event.preventDefault();
-    (alert("deseja exluir?" + despesa.ds_descricao + " - " + despesa.id));
     console.log("baixou");
   }
 
