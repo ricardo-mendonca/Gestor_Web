@@ -42,15 +42,13 @@ export class DataService {
         return this.http.post(`${this.url}/ResetPassword`, data);
     }
 
-    getUsuario(){
-        return this.http.get(`${this.url}/getUsuario`,{ headers: this.composeHeaders() } );
+    getUsuario() {
+        return this.http.get(`${this.url}/getUsuario`, { headers: this.composeHeaders() });
     }
 
-    updateUsuario(data: any){
-        return this.http.put(`${this.url}/updateUsuario`, data,{ headers: this.composeHeaders() });
+    updateUsuario(data: any) {
+        return this.http.put(`${this.url}/updateUsuario`, data, { headers: this.composeHeaders() });
     }
-
-
     //#endregion
 
     //#region Categoria
@@ -63,9 +61,19 @@ export class DataService {
     //#region DESPESAS
 
     getDespesas(data: any) {
-console.log("getdespesa");
-console.log(data);
-        return this.http.post(`${this.url}/GetDespesas`,data,{ headers: this.composeHeaders() });
+
+        return this.http.post(`${this.url}/GetDespesas`, data, { headers: this.composeHeaders() });
+    }
+
+    CreateDespesa(data: any) {
+
+        data.vl_valor_parc = data.vl_valor_parc.replace('.', '').replace('.', '').replace(',', '.');
+        data.vl_valor_multa = data.vl_valor_multa.replace('.', '').replace('.', '').replace(',', '.');
+        data.vl_valor_desconto = data.vl_valor_desconto.replace('.', '').replace('.', '').replace(',', '.');
+
+        console.log(data);
+
+        return this.http.post(`${this.url}/CreateDespesa`, data, { headers: this.composeHeaders() });
     }
 
     //#endregion
