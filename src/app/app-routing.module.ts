@@ -6,6 +6,7 @@ import { SignupPageComponent } from './pages/account/signup-page/signup-page.com
 import { UserPageComponent } from './pages/account/user-page/user-page.component';
 import { CategoriaPageComponent } from './pages/Despesa/categoria-page/categoria-page.component';
 import { DespesaPageComponent } from './pages/Despesa/despesa-page/despesa-page.component';
+import { NovaDespesaPageComponent } from './pages/Despesa/nova-despesa-page/nova-despesa-page.component';
 import { FramePageComponent } from './pages/master/frame.page';
 import { AuthService } from './services/auth.service';
 
@@ -18,7 +19,8 @@ const routes: Routes = [
     component: FramePageComponent,
     canActivate: [AuthService],
     children: [
-        { path:'consulta', component: DespesaPageComponent },      
+        { path:'consulta', component: DespesaPageComponent }, 
+        { path:'novadespesa', component: NovaDespesaPageComponent },      
     ]
   },
   {

@@ -1,34 +1,58 @@
 <div class="container">
     <div>
-        <div class="row mb-1">
-            <div class="col">
-                <div class="form-floating mb-3">
-                    <!--<label for="exampleFormControlSelect1">Mês</label>-->
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1 - Janeiro</option>
-                        <option>2 - Fevereiro</option>
-                        <option>3 - Março</option>
-                        <option>4 - Abril</option>
-                        <option>5 - Maio</option>
-                        <option>6 - Junho</option>
-                        <option>7 - Julho</option>
-                        <option>8 - Agosto</option>
-                        <option>9 - Setembro</option>
-                        <option>10 - Outubro</option>
-                        <option>11 - Novembro</option>
-                        <option>12 - Dezembro</option>
-                    </select>
+        <br>
+        <form [formGroup]="form" *ngIf="!busy">
+            <div class="row mb-1">
+                <div class="col">
+                    <div class="form-floating mb-1">
+                        <select class="form-select" formControlName="cd_mes">
+                            <option value="01">Janeiro</option>
+                            <option value="02">Fevereiro</option>
+                            <option value="03">Março</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Maio</option>
+                            <option value="06">Junho</option>
+                            <option value="07">julho</option>
+                            <option value="08">Agosto</option>
+                            <option value="09">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
+                        <label for="floatingSelectGrid">Mês</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="form-floating mb-3">
-                    <input type="number" class="form-control" formControlName="cd_ano" placeholder="2022">
-                    <label for="floatingInput">Ano</label>
+                <div class="col">
+                    <div class="form-floating mb-1 ">
+                        <select class="form-select" formControlName="cd_ano">
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                        </select>
+                        <label for="floatingSelectGrid">Ano</label>
+                    </div>
                 </div>
-            </div>
-        </div>
-      
+                <div class="col">
+                    <div class="form-floating mb-1">
+                        <button class="w-50 btn btn-primary btn-lg btn-block " (click)="submit()">buscar</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating mb-1">
 
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating mb-1">
+                        <button class="w-100 btn btn-primary btn-lg btn-block " (click)="novaDespesa()">nova despesa</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
         <table class="table table-sm table-striped table-hover">
             <thead>
                 <tr>
@@ -46,8 +70,8 @@
                     <td>{{despesa.ds_descricao}}</td>
                     <td>{{despesa.cd_dia}}/{{despesa.cd_mes}}/{{despesa.cd_ano}}</td>
                     <td>{{despesa.vl_valor_parc | currency:"BRL"}}</td>
-                    <td><button class="btn btn-primary btn-sm">Editar</button></td>
-                    <td><button class="btn btn-danger btn-sm">Deletar</button></td>
+                    <td><button class="btn btn-primary btn-sm" (click)="baixar($event, despesa)">Editar</button></td>
+                    <td><button class="btn btn-danger btn-sm" (click)="deletar($event, despesa)">Deletar</button></td>
                 </tr>
             </tbody>
         </table>

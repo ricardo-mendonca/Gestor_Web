@@ -1,7 +1,9 @@
 <div class="container">
     <div>
         <ul class="mb-5">
-            <li *ngFor="let categoria of categoria$ | async">{{categoria.id}} {{ categoria.ds_descricao }}</li>
+            <li *ngFor="let categoria of categoria$ | async">
+                {{categoria.id}} 
+                {{ categoria.ds_descricao }}</li>
         </ul>
     </div>
 </div>
