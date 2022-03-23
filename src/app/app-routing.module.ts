@@ -4,7 +4,8 @@ import { LoginPageComponent } from './pages/account/login-page/login-page.compon
 import { ResetPasswordPageComponent } from './pages/account/reset-password-page/reset-password-page.component';
 import { SignupPageComponent } from './pages/account/signup-page/signup-page.component';
 import { UserPageComponent } from './pages/account/user-page/user-page.component';
-import { CategoriaPageComponent } from './pages/Despesa/categoria-page/categoria-page.component';
+import { CategoriaPageComponent } from './pages/Categoria/categoria-page/categoria-page.component';
+import { AlterarDespesaComponent } from './pages/Despesa/alterar-despesa/alterar-despesa.component';
 import { DespesaPageComponent } from './pages/Despesa/despesa-page/despesa-page.component';
 import { NovaDespesaPageComponent } from './pages/Despesa/nova-despesa-page/nova-despesa-page.component';
 import { FramePageComponent } from './pages/master/frame.page';
@@ -20,7 +21,8 @@ const routes: Routes = [
     canActivate: [AuthService],
     children: [
         { path:'consulta', component: DespesaPageComponent }, 
-        { path:'novadespesa', component: NovaDespesaPageComponent },      
+        { path:'novadespesa', component: NovaDespesaPageComponent },
+        { path:'alterardespesa/:id', component: AlterarDespesaComponent },
     ]
   },
   {

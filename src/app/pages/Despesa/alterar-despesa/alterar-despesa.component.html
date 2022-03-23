@@ -4,18 +4,15 @@
         <div class="row mb-1">
             <div class="col">
                 <div class="form-floating mb-1">
-                    <h3 class="mb-5" ng>Nova Despesa </h3>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-floating mb-1">
-
+                    <h3 class="mb-5" ng>Alterar Despesa </h3>
                 </div>
             </div>
             <div class="col">
                 <div class="form-floating mb-1">
-
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-1">
                 </div>
             </div>
             <div class="col">
@@ -24,23 +21,24 @@
                 </div>
             </div>
         </div>
-        <div class="card-body p-5 text-center">
+        
+        <app-loading *ngIf="busy"></app-loading>
+        
+        <form [formGroup]="form" *ngIf="!busy">
 
-            <app-loading *ngIf="busy"></app-loading>
-
-            <form [formGroup]="form" *ngIf="!busy">
-
+            <div class="card-body p-5 text-center">
                 <div class="row mb-1">
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="ds_descricao" placeholder="name">
+                            <input type="text" class="form-control"  formControlName="ds_descricao" placeholder="name">
                             <label for="floatingInput">Descrição</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <select class="form-select"  id="id_categoria"  formControlName="id_categoria">
-                                <option *ngFor="let categoria of categoria$ | async" [value]="categoria.id"> {{categoria.ds_descricao}}</option>
+                            <select class="form-select" id="id_categoria" formControlName="id_categoria">
+                                <option *ngFor="let categoria of categoria$ | async" [value]="categoria.id">
+                                    {{categoria.ds_descricao}}</option>
                             </select>
                             <label for="floatingSelectGrid">Categoria</label>
                         </div>
@@ -49,22 +47,19 @@
                 <div class="row mb-1">
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" 
-                                formControlName="vl_valor_parc" >
+                            <input type="text" class="form-control" formControlName="vl_valor_parc">
                             <label for="floatingInput">Valor</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" 
-                                formControlName="vl_valor_multa" >
+                            <input type="text" class="form-control" formControlName="vl_valor_multa">
                             <label for="floatingInput">Multa</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" 
-                                formControlName="vl_valor_desconto" >
+                            <input type="text" class="form-control" formControlName="vl_valor_desconto">
                             <label for="floatingInput">desconto</label>
                         </div>
                     </div>
@@ -113,9 +108,15 @@
                     </div>
                 </div>
                 <button class="w-25 btn btn-primary btn-lg btn-block" (click)="submit()">Salvar</button>
-            </form>
-        </div>
+
+
+
+            </div>
+
+        </form>
+
+
+
+
     </div>
-
-
 </div>

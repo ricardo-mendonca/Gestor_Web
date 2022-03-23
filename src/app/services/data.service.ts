@@ -71,10 +71,28 @@ export class DataService {
         data.vl_valor_multa = data.vl_valor_multa.replace('.', '').replace('.', '').replace(',', '.');
         data.vl_valor_desconto = data.vl_valor_desconto.replace('.', '').replace('.', '').replace(',', '.');
 
-        console.log(data);
+        //console.log(data);
 
         return this.http.post(`${this.url}/CreateDespesa`, data, { headers: this.composeHeaders() });
     }
+
+    GetDespesasId(data: any){
+        console.log("getById");
+        console.log(data);
+        return this.http.post(`${this.url}/GetDespesasId`,data, { headers: this.composeHeaders() });
+    }
+
+    UpdateDespesa(data: any) {
+
+        data.vl_valor_parc = data.vl_valor_parc.replace('.', '').replace('.', '').replace(',', '.');
+        data.vl_valor_multa = data.vl_valor_multa.replace('.', '').replace('.', '').replace(',', '.');
+        data.vl_valor_desconto = data.vl_valor_desconto.replace('.', '').replace('.', '').replace(',', '.');
+
+        //console.log(data);
+
+        return this.http.post(`${this.url}/UpdateDespesa`, data, { headers: this.composeHeaders() });
+    }
+
 
     //#endregion
 

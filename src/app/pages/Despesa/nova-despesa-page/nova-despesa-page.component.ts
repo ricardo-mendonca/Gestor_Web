@@ -5,8 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
-
-
 @Component({
   selector: 'app-nova-despesa-page',
   templateUrl: './nova-despesa-page.component.html',
@@ -70,6 +68,13 @@ export class NovaDespesaPageComponent implements OnInit {
   }
 
   submit(){
+  console.log("Submit salvar");
+    if(this.form.value.dt_pagamento == ""){this.form.value.dt_pagamento = '2099-01-01'} 
+    if(this.form.value.vl_valor_multa == ""){this.form.value.vl_valor_multa = '0'} 
+    if(this.form.value.vl_valor_desconto == ""){this.form.value.vl_valor_desconto = '0'}  
+    if(this.form.value.vl_valor_parc == ""){this.form.value.vl_valor_parc = '1'}  
+  
+    console.log(this.form.value);
       this.busy = true;
 
       
