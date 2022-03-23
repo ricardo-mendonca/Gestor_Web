@@ -12,7 +12,7 @@ import { SignupPageComponent } from './pages/account/signup-page/signup-page.com
 import { DespesaPageComponent } from './pages/Despesa/despesa-page/despesa-page.component';
 import { LoginPageComponent } from './pages/account/login-page/login-page.component';
 import { FramePageComponent } from './pages/master/frame.page';
-import { CategoriaPageComponent } from './pages/Despesa/categoria-page/categoria-page.component';
+import { CategoriaPageComponent } from './pages/Categoria/categoria-page/categoria-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './Components/shared/loading/loading.component';
 import { NgxMaskModule } from 'ngx-mask';
@@ -20,6 +20,7 @@ import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
 import { UserPageComponent } from './pages/account/user-page/user-page.component';
 import { NovaDespesaPageComponent } from './pages/Despesa/nova-despesa-page/nova-despesa-page.component';
+import { AlterarDespesaComponent } from './pages/Despesa/alterar-despesa/alterar-despesa.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { NovaDespesaPageComponent } from './pages/Despesa/nova-despesa-page/nova
     LoadingComponent,
     UserPageComponent,
     NovaDespesaPageComponent, 
+    AlterarDespesaComponent,
   ],
   imports: [
     BrowserModule,
