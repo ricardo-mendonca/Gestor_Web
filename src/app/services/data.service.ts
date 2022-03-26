@@ -77,8 +77,8 @@ export class DataService {
     }
 
     GetDespesasId(data: any){
-        console.log("getById");
-        console.log(data);
+        //console.log("getById");
+        //console.log(data);
         return this.http.post(`${this.url}/GetDespesasId`,data, { headers: this.composeHeaders() });
     }
 

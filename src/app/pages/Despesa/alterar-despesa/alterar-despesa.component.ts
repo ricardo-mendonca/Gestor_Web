@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
@@ -17,6 +18,9 @@ export class AlterarDespesaComponent implements OnInit {
   public despesa$!: Observable<any>;
   public idAtual: any;
 
+  public dt_vencimento:any;
+  public dt_pagamento:any;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -24,7 +28,7 @@ export class AlterarDespesaComponent implements OnInit {
     private fb: FormBuilder,
     private toastr: ToastrService,
     private data: DataService,
-
+    
   ) {
     this.form = this.fb.group({
       id: ['', Validators.compose([
@@ -91,26 +95,32 @@ export class AlterarDespesaComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.busy = false;
-          console.log("datavencimento");
-          
+        
+          //verifica se foi pago 
+          if(moment(data.dt_pagamento).format("DD/MM/YYYY") != '01/01/2100'){
+            this.form.controls['dt_pagamento'].setValue(data.dt_pagamento) ;
+            
+          }
 
-          
-          var brDate2 = (data.dt_vencimento).split('-').reverse().join('/');
-          console.log(data.dt_vencimento);
-          console.log(brDate2);
+          this.dt_vencimento = (moment(data.dt_vencimento).format("DD/MM/yyyy"));
+          this.dt_vencimento =(moment(data.dt_vencimento).format("DD/MM/yyyy"));
+
+       
+
+
 
           this.form.controls['ds_descricao'].setValue(data.ds_descricao);
           this.form.controls['id_categoria'].setValue(data.id_categoria);
+
           this.form.controls['vl_valor_parc'].setValue(data.vl_valor_parc);
           this.form.controls['vl_valor_multa'].setValue(data.vl_valor_multa);
           this.form.controls['vl_valor_desconto'].setValue(data.vl_valor_desconto);
-          this.form.controls['dt_vencimento'].setValue(data.dt_vencimento);
-          this.form.controls['dt_pagamento'].setValue(data.dt_pagamento) ;
+        
+        
           this.form.controls['fl_despesa_fixa'].setValue(data.fl_despesa_fixa);
           this.form.controls['fl_pago'].setValue(data.fl_pago);
-          this.form.controls['dt_pagamento'].setValue(data.dt_pagamento);
           this.form.controls['cd_qtd_tot_parc'].setValue(data.cd_qtd_tot_parc);
-          console.log(data);
+       
         },
         (err) => {
           console.log(err);
@@ -124,38 +134,18 @@ export class AlterarDespesaComponent implements OnInit {
   }
 
   submit() {
+    this.busy = true;
     console.log("Submit salvar");
-
-    //
-
-
-
-    console.log("Submit salvar");
-    if (this.form.value.dt_pagamento == "") { this.form.value.dt_pagamento = '2099-01-01' }
-    if (this.form.value.vl_valor_multa == "") { this.form.value.vl_valor_multa = '0' }
-    if (this.form.value.vl_valor_desconto == "") { this.form.value.vl_valor_desconto = '0' }
-    if (this.form.value.vl_valor_parc == "") { this.form.value.vl_valor_parc = '1' }
+    //if (this.form.value.dt_pagamento == "") { this.form.value.dt_pagamento = '2099-01-01' }
+    //if (this.form.value.vl_valor_multa == "") { this.form.value.vl_valor_multa = '0' }
+    //if (this.form.value.vl_valor_desconto == "") { this.form.value.vl_valor_desconto = '0' }
+    //if (this.form.value.vl_valor_parc == "") { this.form.value.vl_valor_parc = '1' }
 
     console.log(this.form.value);
-    this.busy = true;
+    
+    this.busy = false;
 
-
-    this
-      .service
-      .UpdateDespesa(this.form.value)
-      .subscribe(
-        (data: any) => {
-          this.busy = false;
-          this.toastr.success(data.message, 'Salvo com sucesso');
-          this.router.navigate(['/despesa/consulta']);
-
-        },
-        (err) => {
-          console.log(err);
-          this.toastr.error(err.message, 'OPS!!!');
-          this.busy = false;
-        }
-      )
+    
 
   }
 }
