@@ -13,7 +13,7 @@ import { DespesaPageComponent } from './pages/Despesa/despesa-page/despesa-page.
 import { LoginPageComponent } from './pages/account/login-page/login-page.component';
 import { FramePageComponent } from './pages/master/frame.page';
 import { CategoriaPageComponent } from './pages/Categoria/categoria-page/categoria-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './Components/shared/loading/loading.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { DataService } from './services/data.service';
@@ -21,7 +21,6 @@ import { AuthService } from './services/auth.service';
 import { UserPageComponent } from './pages/account/user-page/user-page.component';
 import { NovaDespesaPageComponent } from './pages/Despesa/nova-despesa-page/nova-despesa-page.component';
 import { AlterarDespesaComponent } from './pages/Despesa/alterar-despesa/alterar-despesa.component';
-
 
 @NgModule({
   declarations: [
@@ -48,6 +47,8 @@ import { AlterarDespesaComponent } from './pages/Despesa/alterar-despesa/alterar
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false
     }),
+    FormsModule,
+    
     
   ],
   providers: [DataService, AuthService ],
