@@ -47,19 +47,19 @@
                 <div class="row mb-1">
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="vl_valor_parc"  mask="separator.2" thousandSeparator=".">
+                            <input type="text" class="form-control" formControlName="vl_valor_parc"   >
                             <label for="floatingInput">Valor</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="vl_valor_multa" mask="separator.2" thousandSeparator="." >
+                            <input type="text" class="form-control" formControlName="vl_valor_multa" >
                             <label for="floatingInput">Multa</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="vl_valor_desconto"  mask="separator.2" thousandSeparator=".">
+                            <input type="text" class="form-control" formControlName="vl_valor_desconto"  >
                             <label for="floatingInput">desconto</label>
                         </div>
                     </div>
@@ -100,9 +100,14 @@
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="cd_qtd_tot_parc"
-                                placeholder="000">
-                            <label for="floatingInput">Quantidade de parcela</label>
+                            <input type="text" class="form-control" formControlName="cd_qtd_parc" placeholder="000">
+                            <label for="floatingInput">Parcela</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" formControlName="cd_qtd_tot_parc" placeholder="000">
+                            <label for="floatingInput">total de parcelas</label>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './Components/shared/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
 
 import { ResetPasswordPageComponent } from './pages/account/reset-password-page/reset-password-page.component';
 import { SignupPageComponent } from './pages/account/signup-page/signup-page.component';
@@ -21,6 +24,8 @@ import { AuthService } from './services/auth.service';
 import { UserPageComponent } from './pages/account/user-page/user-page.component';
 import { NovaDespesaPageComponent } from './pages/Despesa/nova-despesa-page/nova-despesa-page.component';
 import { AlterarDespesaComponent } from './pages/Despesa/alterar-despesa/alterar-despesa.component';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -51,7 +56,12 @@ import { AlterarDespesaComponent } from './pages/Despesa/alterar-despesa/alterar
     
     
   ],
-  providers: [DataService, AuthService ],
+  providers: [
+    DataService, 
+    AuthService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
