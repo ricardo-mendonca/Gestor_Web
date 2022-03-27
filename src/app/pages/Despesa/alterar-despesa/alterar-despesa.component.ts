@@ -17,7 +17,6 @@ export class AlterarDespesaComponent implements OnInit {
   public categoria$!: Observable<any[]>;
   public despesa$!: Observable<any>;
   public idAtual: any;
-
   public dt_vencimento:any;
   public dt_pagamento:any;
 
@@ -62,7 +61,10 @@ export class AlterarDespesaComponent implements OnInit {
         Validators.minLength(2),
       ])],
       cd_qtd_tot_parc: ['', Validators.compose([
-        Validators.minLength(2),
+        Validators.minLength(1),
+      ])],
+      cd_qtd_parc: ['', Validators.compose([
+        Validators.minLength(1),
       ])]
     });
   }
@@ -82,10 +84,15 @@ export class AlterarDespesaComponent implements OnInit {
       this.form.value.vl_valor_desconto = "0",
       this.form.value.vl_valor_multa = "0",
       this.form.value.vl_valor_parc = "0"
-
+      this.form.value.cd_qtd_parc = "0"
+      
     this.buscarDespesa(this.form.value);
 
   }
+
+  getFormataPreco(price: number) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
+}
 
   buscarDespesa(data: any) {
     this.busy = true;
@@ -96,30 +103,24 @@ export class AlterarDespesaComponent implements OnInit {
         (data: any) => {
           this.busy = false;
         
+         
           //verifica se foi pago 
           if(moment(data.dt_pagamento).format("DD/MM/YYYY") != '01/01/2100'){
-            this.form.controls['dt_pagamento'].setValue(data.dt_pagamento) ;
-            
+            this.form.controls['dt_pagamento'].setValue(data.dt_pagamento) ;            
           }
 
           this.dt_vencimento = (moment(data.dt_vencimento).format("DD/MM/yyyy"));
           this.dt_vencimento =(moment(data.dt_vencimento).format("DD/MM/yyyy"));
 
-       
-
-
-
           this.form.controls['ds_descricao'].setValue(data.ds_descricao);
           this.form.controls['id_categoria'].setValue(data.id_categoria);
-
-          this.form.controls['vl_valor_parc'].setValue(data.vl_valor_parc);
-          this.form.controls['vl_valor_multa'].setValue(data.vl_valor_multa);
-          this.form.controls['vl_valor_desconto'].setValue(data.vl_valor_desconto);
-        
-        
+          this.form.controls['vl_valor_parc'].setValue(this.getFormataPreco(data.vl_valor_parc));
+          this.form.controls['vl_valor_multa'].setValue(this.getFormataPreco(data.vl_valor_multa));
+          this.form.controls['vl_valor_desconto'].setValue(this.getFormataPreco(data.vl_valor_desconto));
           this.form.controls['fl_despesa_fixa'].setValue(data.fl_despesa_fixa);
           this.form.controls['fl_pago'].setValue(data.fl_pago);
           this.form.controls['cd_qtd_tot_parc'].setValue(data.cd_qtd_tot_parc);
+          this.form.controls['cd_qtd_parc'].setValue(data.cd_qtd_parc);
        
         },
         (err) => {

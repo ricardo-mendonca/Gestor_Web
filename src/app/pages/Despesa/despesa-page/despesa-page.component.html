@@ -59,6 +59,8 @@
                     <th>Id</th>
                     <th>descricao</th>
                     <th>Vencimento</th>
+                    <th>Parcela</th>
+                    <th>Desp Fixa</th>
                     <th>Valor</th>
                     <th>Editar</th>
                     
@@ -69,7 +71,22 @@
                     <td>{{despesa.id}}</td>
                     <td>{{despesa.ds_descricao}}</td>
                     <td>{{despesa.cd_dia}}/{{despesa.cd_mes}}/{{despesa.cd_ano}}</td>
-                    <td>{{despesa.vl_valor_parc | currency:"BRL"}}</td>
+                    <td>{{despesa.cd_qtd_parc}} de {{ despesa.cd_qtd_tot_parc}} </td>
+                    
+                    <td> <ng-template [ngIf]="despesa.fl_despesa_fixa === '1'" [ngIfElse]="userLoggedOut">
+                        <div>
+                          Sim
+                        </div>
+                      </ng-template>
+                      
+                      <ng-template #userLoggedOut>
+                        <div>
+                          Não
+                        </div>
+                      </ng-template>
+                   </td>
+                    <td>{{despesa.vl_valor_parc | currency  }}</td>
+
                     <td><button class="btn btn-primary btn-sm" (click)="editar(despesa)">Editar</button></td>
                 </tr>
             </tbody>
