@@ -41,7 +41,8 @@ export class DespesaPageComponent implements OnInit {
     this.busy = true;
 
     this.despesa$ = this.data.getDespesas(this.form.value);
-
+    console.log("Aquiiiii")
+    console.log(this.despesa$)
     this.busy = false;
   }
 

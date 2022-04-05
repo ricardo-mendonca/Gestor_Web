@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Despesa } from '../pages/model/despesa.model';
 import { Security } from '../utils/security.util';
+import * as moment from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -84,11 +85,18 @@ export class DataService {
 
     UpdateDespesa(data: any) {
 
-        data.vl_valor_parc = data.vl_valor_parc.replace('.', '').replace('.', '').replace(',', '.');
-        data.vl_valor_multa = data.vl_valor_multa.replace('.', '').replace('.', '').replace(',', '.');
-        data.vl_valor_desconto = data.vl_valor_desconto.replace('.', '').replace('.', '').replace(',', '.');
+        data.vl_valor_parc = data.vl_valor_parc.replace('R$', '').replace('.', '').replace('.', '').replace(',', '.').replace(/\s/g, "") ;
+        data.vl_valor_multa = data.vl_valor_multa.replace('R$', '').replace('.', '').replace('.', '').replace(',', '.').replace(/\s/g, "");
+        data.vl_valor_desconto = data.vl_valor_desconto.replace('R$', '').replace('.', '').replace('.', '').replace(',', '.').replace(/\s/g, "");
+      
+        var dt_venc = moment(data.dt_vencimento, "DD/MM/YYYY");
+        data.dt_vencimento = dt_venc.format("YYYY-MM-DD")
 
-        //console.log(data);
+        var dt_pgto = moment(data.dt_pagamento, "DD/MM/YYYY");
+        data.dt_pagamento = dt_pgto.format("YYYY-MM-DD")
+        
+
+        console.log(data);
 
         return this.http.post(`${this.url}/UpdateDespesa`, data, { headers: this.composeHeaders() });
     }
