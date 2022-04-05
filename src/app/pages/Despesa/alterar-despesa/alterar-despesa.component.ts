@@ -17,8 +17,8 @@ export class AlterarDespesaComponent implements OnInit {
   public categoria$!: Observable<any[]>;
   public despesa$!: Observable<any>;
   public idAtual: any;
-  public dt_vencimento:any;
-  public dt_pagamento:any;
+  public dt_vencimento: any;
+  public dt_pagamento: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +27,7 @@ export class AlterarDespesaComponent implements OnInit {
     private fb: FormBuilder,
     private toastr: ToastrService,
     private data: DataService,
-    
+
   ) {
     this.form = this.fb.group({
       id: ['', Validators.compose([
@@ -60,12 +60,8 @@ export class AlterarDespesaComponent implements OnInit {
       dt_pagamento: ['', Validators.compose([
         Validators.minLength(2),
       ])],
-      cd_qtd_tot_parc: ['', Validators.compose([
-        Validators.minLength(1),
-      ])],
-      cd_qtd_parc: ['', Validators.compose([
-        Validators.minLength(1),
-      ])]
+      cd_qtd_tot_parc: [],
+      cd_qtd_parc: []
     });
   }
 
@@ -84,15 +80,15 @@ export class AlterarDespesaComponent implements OnInit {
       this.form.value.vl_valor_desconto = "0",
       this.form.value.vl_valor_multa = "0",
       this.form.value.vl_valor_parc = "0"
-      this.form.value.cd_qtd_parc = "0"
-      
+    this.form.value.cd_qtd_parc = "0"
+
     this.buscarDespesa(this.form.value);
 
   }
 
   getFormataPreco(price: number) {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
-}
+  }
 
   buscarDespesa(data: any) {
     this.busy = true;
@@ -102,16 +98,13 @@ export class AlterarDespesaComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.busy = false;
-        
-         
-          //verifica se foi pago 
-          if(moment(data.dt_pagamento).format("DD/MM/YYYY") != '01/01/2100'){
-            this.form.controls['dt_pagamento'].setValue(data.dt_pagamento) ;            
-          }
+
+          if(data.dt_pagamento != "2100-01-01T00:00:00"){
+            this.dt_pagamento = (moment(data.dt_pagamento).format("DD/MM/yyyy"));
+          }        
 
           this.dt_vencimento = (moment(data.dt_vencimento).format("DD/MM/yyyy"));
-          this.dt_vencimento =(moment(data.dt_vencimento).format("DD/MM/yyyy"));
-
+          this.form.controls['id'].setValue(data.id);
           this.form.controls['ds_descricao'].setValue(data.ds_descricao);
           this.form.controls['id_categoria'].setValue(data.id_categoria);
           this.form.controls['vl_valor_parc'].setValue(this.getFormataPreco(data.vl_valor_parc));
@@ -121,7 +114,7 @@ export class AlterarDespesaComponent implements OnInit {
           this.form.controls['fl_pago'].setValue(data.fl_pago);
           this.form.controls['cd_qtd_tot_parc'].setValue(data.cd_qtd_tot_parc);
           this.form.controls['cd_qtd_parc'].setValue(data.cd_qtd_parc);
-       
+
         },
         (err) => {
           console.log(err);
@@ -136,17 +129,31 @@ export class AlterarDespesaComponent implements OnInit {
 
   submit() {
     this.busy = true;
-    console.log("Submit salvar");
-    //if (this.form.value.dt_pagamento == "") { this.form.value.dt_pagamento = '2099-01-01' }
-    //if (this.form.value.vl_valor_multa == "") { this.form.value.vl_valor_multa = '0' }
-    //if (this.form.value.vl_valor_desconto == "") { this.form.value.vl_valor_desconto = '0' }
-    //if (this.form.value.vl_valor_parc == "") { this.form.value.vl_valor_parc = '1' }
+    //console.log("despesa salvar");
+    if (this.form.value.dt_pagamento == "") { this.form.value.dt_pagamento = '2099-01-01' }
+    if (this.form.value.vl_valor_multa == "") { this.form.value.vl_valor_multa = '0' }
+    if (this.form.value.vl_valor_desconto == "") { this.form.value.vl_valor_desconto = '0' }
 
-    console.log(this.form.value);
-    
+    this
+      .service
+      .UpdateDespesa(this.form.value)
+      .subscribe(
+        (data: any) => {
+          this.busy = false;
+          this.toastr.success(data.message, 'Salvo com sucesso');
+          this.router.navigate(['/despesa/consulta']);
+
+        },
+        (err) => {
+          //console.log(err);
+          this.toastr.error(err.message, 'OPS!!!');
+          this.busy = false;
+        }
+      )
+
     this.busy = false;
 
-    
+
 
   }
 }

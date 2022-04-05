@@ -68,13 +68,15 @@ export class NovaDespesaPageComponent implements OnInit {
   }
 
   submit(){
-  console.log("Submit salvar");
+  //console.log("Submit salvar");
+  //console.log(this.form.value.dt_pagamento);
+
     if(this.form.value.dt_pagamento == ""){this.form.value.dt_pagamento = '2099-01-01'} 
     if(this.form.value.vl_valor_multa == ""){this.form.value.vl_valor_multa = '0'} 
     if(this.form.value.vl_valor_desconto == ""){this.form.value.vl_valor_desconto = '0'}  
     if(this.form.value.vl_valor_parc == ""){this.form.value.vl_valor_parc = '1'}  
   
-    console.log(this.form.value);
+    //console.log(this.form.value);
       this.busy = true;
 
       
@@ -89,7 +91,7 @@ export class NovaDespesaPageComponent implements OnInit {
 
         },
         (err) => {
-          console.log(err);
+          //console.log(err);
           this.toastr.error(err.message, 'OPS!!!');
           this.busy = false;
         }
