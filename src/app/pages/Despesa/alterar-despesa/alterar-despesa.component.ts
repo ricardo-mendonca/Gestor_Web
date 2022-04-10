@@ -129,8 +129,6 @@ export class AlterarDespesaComponent implements OnInit {
 
   submit() {
     this.busy = true;
-    //console.log("despesa salvar");
-    if (this.form.value.dt_pagamento == "") { this.form.value.dt_pagamento = '2099-01-01' }
     if (this.form.value.vl_valor_multa == "") { this.form.value.vl_valor_multa = '0' }
     if (this.form.value.vl_valor_desconto == "") { this.form.value.vl_valor_desconto = '0' }
 
@@ -152,8 +150,5 @@ export class AlterarDespesaComponent implements OnInit {
       )
 
     this.busy = false;
-
-
-
   }
 }

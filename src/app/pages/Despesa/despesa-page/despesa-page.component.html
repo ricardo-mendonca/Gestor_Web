@@ -83,19 +83,20 @@
 
                         <ng-template #userLoggedOut>
                             <div>
+                                
                                 Não
                             </div>
                         </ng-template>
                     </td>
                     <td>
                         <ng-template [ngIf]="despesa.fl_pago === '1'" [ngIfElse]="userLoggedOut">
-                            <div>
+                            <div class="btn btn-outline-success btn-sm">
                                 Sim
                             </div>
                         </ng-template>
 
                         <ng-template #userLoggedOut>
-                            <div>
+                            <div class="btn btn-outline-danger btn-sm">
                                 Não
                             </div>
                         </ng-template>

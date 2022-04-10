@@ -28,10 +28,10 @@
 
             <div class="card-body p-5 text-center">
                 <div class="row mb-1">
-                    
+
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="ds_descricao"   placeholder="name">
+                            <input type="text" class="form-control" formControlName="ds_descricao" placeholder="name">
                             <label for="floatingInput">Descrição</label>
                         </div>
                     </div>
@@ -48,45 +48,48 @@
                 <div class="row mb-1">
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="vl_valor_parc"   >
+                            <input type="text" class="form-control" formControlName="vl_valor_parc">
                             <label for="floatingInput">Valor</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="vl_valor_multa" >
+                            <input type="text" class="form-control" formControlName="vl_valor_multa">
                             <label for="floatingInput">Multa</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="vl_valor_desconto"  >
+                            <input type="text" class="form-control" formControlName="vl_valor_desconto">
                             <label for="floatingInput">desconto</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" mask="00/00/0000" formControlName="dt_vencimento" [(ngModel)]="dt_vencimento" placeholder="00/00/0000">  
+                            <input type="text" class="form-control" mask="00/00/0000" formControlName="dt_vencimento"
+                                [(ngModel)]="dt_vencimento" placeholder="00/00/0000">
                             <label for="floatingInput">dt_vencimento</label>
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div class="row mb-1">
 
                     <div class="col">
-                        <div class="form-floating mb-3">
+
+                        <div class="form-floating mb-3" >
                             <select class="form-select" formControlName="fl_despesa_fixa">
                                 <option value="0">Não</option>
                                 <option value="1">Sim</option>
                             </select>
                             <label for="floatingSelectGrid">Despesa fixa?</label>
                         </div>
+
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <select class="form-select" formControlName="fl_pago">
+                            <select class="form-select" #flPago formControlName="fl_pago">
                                 <option value="0">Não</option>
                                 <option value="1">Sim</option>
                             </select>
@@ -94,20 +97,23 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" mask="00/00/0000" formControlName="dt_pagamento" [(ngModel)]="dt_pagamento" placeholder="00/00/0000">
+                        <div class="form-floating mb-3" *ngIf="flPago.value=='1' ">
+                            <input type="text" class="form-control" mask="00/00/0000" formControlName="dt_pagamento"
+                                [(ngModel)]="dt_pagamento" placeholder="00/00/0000">
                             <label for="floatingInput">Data do pagamento</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" readonly="true" formControlName="cd_qtd_parc" placeholder="000">
+                            <input type="text" class="form-control" readonly="true" formControlName="cd_qtd_parc"
+                                placeholder="000">
                             <label for="floatingInput">Parcela</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" readonly="true" tex formControlName="cd_qtd_tot_parc" placeholder="000">
+                            <input type="text" class="form-control" readonly="true" formControlName="cd_qtd_tot_parc"
+                                placeholder="000">
                             <label for="floatingInput">total de parcelas</label>
                         </div>
                     </div>

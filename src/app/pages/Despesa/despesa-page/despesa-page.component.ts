@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
+import { despesa } from 'src/app/models/despesa.model';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -13,6 +14,7 @@ import { DataService } from 'src/app/services/data.service';
 export class DespesaPageComponent implements OnInit {
   public form!: FormGroup;
   public despesa$!: Observable<any>;
+  public vlTotal: any;
   public busy = false;
 
   constructor(
@@ -21,19 +23,12 @@ export class DespesaPageComponent implements OnInit {
     private fb: FormBuilder,
   ) {
     this.form = this.fb.group({
-      //cd_mes: ['', Validators.compose([
-      //  Validators.minLength(2),
-      //])],
-      //cd_ano: ['', Validators.compose([
-      //  Validators.minLength(2),
-      //])],
       cd_mes: [moment().format('MM')],
       cd_ano: [moment().format('YYYY')]
     });
   }
 
   ngOnInit() {
-
     this.submit();
   }
 
@@ -42,7 +37,16 @@ export class DespesaPageComponent implements OnInit {
 
     this.despesa$ = this.data.getDespesas(this.form.value);
     console.log("Aquiiiii")
-    console.log(this.despesa$)
+    var total = 0;
+
+    this.despesa$.forEach( despesa$ => {
+      console.log(despesa$);
+      total+= despesa$.vl_valor_parc;
+    });
+
+    
+    
+
     this.busy = false;
   }
 
