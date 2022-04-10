@@ -77,26 +77,25 @@ export class DataService {
         return this.http.post(`${this.url}/CreateDespesa`, data, { headers: this.composeHeaders() });
     }
 
-    GetDespesasId(data: any){
-        //console.log("getById");
-        //console.log(data);
-        return this.http.post(`${this.url}/GetDespesasId`,data, { headers: this.composeHeaders() });
+    GetDespesasId(data: any) {
+        return this.http.post(`${this.url}/GetDespesasId`, data, { headers: this.composeHeaders() });
     }
 
     UpdateDespesa(data: any) {
-
-        data.vl_valor_parc = data.vl_valor_parc.replace('R$', '').replace('.', '').replace('.', '').replace(',', '.').replace(/\s/g, "") ;
+        data.vl_valor_parc = data.vl_valor_parc.replace('R$', '').replace('.', '').replace('.', '').replace(',', '.').replace(/\s/g, "");
         data.vl_valor_multa = data.vl_valor_multa.replace('R$', '').replace('.', '').replace('.', '').replace(',', '.').replace(/\s/g, "");
         data.vl_valor_desconto = data.vl_valor_desconto.replace('R$', '').replace('.', '').replace('.', '').replace(',', '.').replace(/\s/g, "");
-      
+
+        if (data.fl_pago == 0) {
+            data.dt_pagamento = "01/01/2100";
+        }
+
         var dt_venc = moment(data.dt_vencimento, "DD/MM/YYYY");
         data.dt_vencimento = dt_venc.format("YYYY-MM-DD")
 
         var dt_pgto = moment(data.dt_pagamento, "DD/MM/YYYY");
         data.dt_pagamento = dt_pgto.format("YYYY-MM-DD")
-        
-
-        console.log(data);
+        //console.log(data);
 
         return this.http.post(`${this.url}/UpdateDespesa`, data, { headers: this.composeHeaders() });
     }
