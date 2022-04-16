@@ -1,10 +1,11 @@
+import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-import { Observable } from 'rxjs';
 import { despesa } from 'src/app/models/despesa.model';
 import { DataService } from 'src/app/services/data.service';
+import { Despesa } from '../../model/despesa.model';
 
 @Component({
   selector: 'app-despesa-page',
@@ -13,9 +14,11 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class DespesaPageComponent implements OnInit {
   public form!: FormGroup;
-  public despesa$!: Observable<any>;
-  public vlTotal: any;
+  //public despesa$!: Despesa;
+  public vlTotalPago: any;
+  public vlTotalAberto: any;
   public busy = false;
+  despesas: Despesa[] = [];
 
   constructor(
     private data: DataService,
@@ -33,23 +36,27 @@ export class DespesaPageComponent implements OnInit {
   }
 
   submit() {
+    this.vlTotalPago=0;
+    this.vlTotalAberto=0;
     this.busy = true;
+    this.data.getDespesas(this.form.value)
+    .subscribe((x) => {
+      this.despesas = x;
+        
+      this.despesas.forEach(despesas => {
+        if(despesas.fl_pago =="1"){
+          this.vlTotalPago += despesas.vl_valor_parc;
+        }
+        else{
+          this.vlTotalAberto +=  despesas.vl_valor_parc;
+        }
+      });
+      
 
-    this.despesa$ = this.data.getDespesas(this.form.value);
-    console.log("Aquiiiii")
-    var total = 0;
 
-    this.despesa$.forEach( despesa$ => {
-      console.log(despesa$);
-      total+= despesa$.vl_valor_parc;
-    });
-
-    
-    
-
+    } );
     this.busy = false;
   }
-
 
   novaDespesa() {
     this.router.navigate(['/despesa/novadespesa'])
@@ -64,3 +71,5 @@ export class DespesaPageComponent implements OnInit {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
   }
 }
+
+
