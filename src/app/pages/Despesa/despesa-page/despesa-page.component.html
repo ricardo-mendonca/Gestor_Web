@@ -69,7 +69,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let despesa of despesa$ | async">
+                <tr *ngFor="let despesa of despesas">
                     <td>{{despesa.id}}</td>
                     <td>{{despesa.ds_descricao}}</td>
                     <td>{{despesa.cd_dia}}/{{despesa.cd_mes}}/{{despesa.cd_ano}}</td>
@@ -95,7 +95,7 @@
                             </div>
                         </ng-template>
 
-                        <ng-template #userLoggedOut>
+                        <ng-template #userLoggedOut class="btn btn-outline-danger btn-sm">
                             <div class="btn btn-outline-danger btn-sm">
                                 Não
                             </div>
@@ -107,5 +107,9 @@
                 </tr>
             </tbody>
         </table>
+
+         valor Pago:  {{vlTotalPago  | currency }}
+<br >
+         valor Aberto:  {{vlTotalAberto  | currency }}
     </div>
 </div>
