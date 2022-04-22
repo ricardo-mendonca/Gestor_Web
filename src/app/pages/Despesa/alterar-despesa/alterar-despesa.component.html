@@ -31,7 +31,7 @@
 
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" formControlName="ds_descricao" placeholder="name">
+                            <input type="text" class="form-control" id="ds_descricao" formControlName="ds_descricao" placeholder="name">
                             <label for="floatingInput">Descrição</label>
                         </div>
                     </div>
@@ -84,6 +84,7 @@
                                 <option value="1">Sim</option>
                             </select>
                             <label for="floatingSelectGrid">Despesa fixa?</label>
+                            
                         </div>
 
                     </div>
@@ -101,7 +102,9 @@
                             <input type="text" class="form-control" mask="00/00/0000" formControlName="dt_pagamento"
                                 [(ngModel)]="dt_pagamento" placeholder="00/00/0000">
                             <label for="floatingInput">Data do pagamento</label>
+                            
                         </div>
+                       
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">

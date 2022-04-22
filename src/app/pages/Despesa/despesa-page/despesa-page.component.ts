@@ -14,11 +14,11 @@ import { Despesa } from '../../model/despesa.model';
 })
 export class DespesaPageComponent implements OnInit {
   public form!: FormGroup;
-  //public despesa$!: Despesa;
   public vlTotalPago: any;
   public vlTotalAberto: any;
   public busy = false;
   despesas: Despesa[] = [];
+
 
   constructor(
     private data: DataService,
@@ -39,10 +39,10 @@ export class DespesaPageComponent implements OnInit {
     this.vlTotalPago=0;
     this.vlTotalAberto=0;
     this.busy = true;
+
     this.data.getDespesas(this.form.value)
     .subscribe((x) => {
       this.despesas = x;
-        
       this.despesas.forEach(despesas => {
         if(despesas.fl_pago =="1"){
           this.vlTotalPago += despesas.vl_valor_parc;
@@ -51,10 +51,7 @@ export class DespesaPageComponent implements OnInit {
           this.vlTotalAberto +=  despesas.vl_valor_parc;
         }
       });
-      
-
-
-    } );
+    });
     this.busy = false;
   }
 
@@ -63,7 +60,6 @@ export class DespesaPageComponent implements OnInit {
   }
 
   editar(_despesa: any) {
-
     this.router.navigate(['/despesa/alterardespesa', _despesa.id])
   }
 

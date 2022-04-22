@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-alterar-despesa',
@@ -30,36 +31,16 @@ export class AlterarDespesaComponent implements OnInit {
 
   ) {
     this.form = this.fb.group({
-      id: ['', Validators.compose([
-        Validators.minLength(1),
-      ])],
-      ds_descricao: ['', Validators.compose([
-        Validators.minLength(2),
-      ])],
-      id_categoria: ['', Validators.compose([
-        Validators.minLength(2),
-      ])],
-      vl_valor_parc: ['', Validators.compose([
-        Validators.minLength(2),
-      ])],
-      vl_valor_multa: ['', Validators.compose([
-        Validators.minLength(2),
-      ])],
-      vl_valor_desconto: ['', Validators.compose([
-        Validators.minLength(2),
-      ])],
-      dt_vencimento: ['', Validators.compose([
-        Validators.minLength(2),
-      ])],
-      fl_despesa_fixa: ['', Validators.compose([
-        Validators.minLength(2),
-      ])],
-      fl_pago: ['', Validators.compose([
-        Validators.minLength(2),
-      ])],
-      dt_pagamento: ['', Validators.compose([
-        Validators.minLength(2),
-      ])],
+      id: ['', Validators.required],
+      ds_descricao: ['', Validators.required],
+      id_categoria: ['', Validators.required],
+      vl_valor_parc: ['', Validators.required],
+      vl_valor_multa: ['', Validators.required],
+      vl_valor_desconto: ['', Validators.required],
+      dt_vencimento: ['',  Validators.required],
+      fl_despesa_fixa: ['', Validators.required],
+      fl_pago: ['', Validators.required],
+      dt_pagamento: [],
       cd_qtd_tot_parc: [],
       cd_qtd_parc: []
     });
@@ -129,6 +110,8 @@ export class AlterarDespesaComponent implements OnInit {
 
   submit() {
     this.busy = true;
+
+    if(this.form.valid){
     if (this.form.value.vl_valor_multa == "") { this.form.value.vl_valor_multa = '0' }
     if (this.form.value.vl_valor_desconto == "") { this.form.value.vl_valor_desconto = '0' }
 
@@ -148,7 +131,11 @@ export class AlterarDespesaComponent implements OnInit {
           this.busy = false;
         }
       )
-
+    }
     this.busy = false;
+  }
+
+  get m(){
+    return this.form.controls;
   }
 }

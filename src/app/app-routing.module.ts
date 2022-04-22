@@ -13,32 +13,28 @@ import { AuthService } from './services/auth.service';
 
 
 const routes: Routes = [
-  { path:'', component: FramePageComponent ,
-    canActivate: [AuthService]},
+  { path:'', component: FramePageComponent ,canActivate: [AuthService]
+  },
   {
     path: 'despesa',
     component: FramePageComponent,
     canActivate: [AuthService],
     children: [
-        { path:'consulta', component: DespesaPageComponent }, 
-        { path:'novadespesa', component: NovaDespesaPageComponent },
-        { path:'alterardespesa/:id', component: AlterarDespesaComponent },
+        { path:'consulta', component: DespesaPageComponent ,canActivate: [AuthService]}, 
+        { path:'novadespesa', component: NovaDespesaPageComponent ,canActivate: [AuthService]},
+        { path:'alterardespesa/:id', component: AlterarDespesaComponent ,canActivate: [AuthService]},
     ]
   },
   {
-    path: 'categoria',
-    component: FramePageComponent,
-    canActivate: [AuthService],
+    path: 'categoria', component: FramePageComponent,canActivate: [AuthService],
     children: [
-        { path:'consulta', component: CategoriaPageComponent },      
+        { path:'consulta', component: CategoriaPageComponent,canActivate: [AuthService] },      
     ]
   },
   {
-    path: 'account',
-    component: FramePageComponent,
-    canActivate: [AuthService],
+    path: 'account', component: FramePageComponent, canActivate: [AuthService],
     children: [
-        { path:'', component: UserPageComponent },      
+        { path:'', component: UserPageComponent ,canActivate: [AuthService]},      
     ]
   },
   { path:'login', component: LoginPageComponent },
