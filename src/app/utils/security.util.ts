@@ -1,3 +1,4 @@
+import * as moment from "moment";
 import { User } from "../models/usuario.model";
 
 export class Security {
@@ -6,6 +7,9 @@ export class Security {
         console.log(data);
         localStorage.setItem('gestor.user',  btoa(data));
         localStorage.setItem('gestor.token', token);
+        
+        localStorage.setItem('gestor.mes', moment().format('MM'));
+        localStorage.setItem('gestor.ano', moment().format('YYYY'));
     }
 
     public static setUser(user: User) {
@@ -45,5 +49,8 @@ export class Security {
     public static clear() {
         localStorage.removeItem('gestor.user');
         localStorage.removeItem('gestor.token');
+        localStorage.removeItem('gestor.mes');
+        localStorage.removeItem('gestor.ano');
+
     }
 }

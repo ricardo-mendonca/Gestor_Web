@@ -77,14 +77,10 @@
                 <div class="row mb-1">
 
                     <div class="col">
-
-                        <div class="form-floating mb-3" >
-                            <select class="form-select" formControlName="fl_despesa_fixa">
-                                <option value="0">Não</option>
-                                <option value="1">Sim</option>
-                            </select>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" readonly="true" formControlName="fl_despesa_fixa"
+                            [(ngModel)]="fl_despesa_fixa">                        
                             <label for="floatingSelectGrid">Despesa fixa?</label>
-                            
                         </div>
 
                     </div>

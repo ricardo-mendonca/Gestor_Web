@@ -16,25 +16,23 @@ const routes: Routes = [
   { path:'', component: FramePageComponent ,canActivate: [AuthService]
   },
   {
-    path: 'despesa',
-    component: FramePageComponent,
-    canActivate: [AuthService],
+    path: 'despesa',  component: FramePageComponent, canActivate: [AuthService],  
     children: [
-        { path:'consulta', component: DespesaPageComponent ,canActivate: [AuthService]}, 
-        { path:'novadespesa', component: NovaDespesaPageComponent ,canActivate: [AuthService]},
-        { path:'alterardespesa/:id', component: AlterarDespesaComponent ,canActivate: [AuthService]},
+        { path:'consulta', component: DespesaPageComponent }, 
+        { path:'novadespesa', component: NovaDespesaPageComponent },
+        { path:'alterardespesa/:id', component: AlterarDespesaComponent },
     ]
   },
   {
-    path: 'categoria', component: FramePageComponent,canActivate: [AuthService],
+    path: 'categoria', component: FramePageComponent, canActivate: [AuthService],
     children: [
-        { path:'consulta', component: CategoriaPageComponent,canActivate: [AuthService] },      
+        { path:'consulta', component: CategoriaPageComponent },      
     ]
   },
   {
     path: 'account', component: FramePageComponent, canActivate: [AuthService],
     children: [
-        { path:'', component: UserPageComponent ,canActivate: [AuthService]},      
+        { path:'', component: UserPageComponent },      
     ]
   },
   { path:'login', component: LoginPageComponent },

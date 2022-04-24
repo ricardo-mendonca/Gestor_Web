@@ -20,6 +20,7 @@ export class AlterarDespesaComponent implements OnInit {
   public idAtual: any;
   public dt_vencimento: any;
   public dt_pagamento: any;
+  public fl_despesa_fixa: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -83,6 +84,8 @@ export class AlterarDespesaComponent implements OnInit {
           if(data.dt_pagamento != "2100-01-01T00:00:00"){
             this.dt_pagamento = (moment(data.dt_pagamento).format("DD/MM/yyyy"));
           }        
+          if (data.fl_despesa_fixa == 1){this.fl_despesa_fixa="Sim"} else {this.fl_despesa_fixa="Não"} 
+          
 
           this.dt_vencimento = (moment(data.dt_vencimento).format("DD/MM/yyyy"));
           this.form.controls['id'].setValue(data.id);
@@ -95,7 +98,6 @@ export class AlterarDespesaComponent implements OnInit {
           this.form.controls['fl_pago'].setValue(data.fl_pago);
           this.form.controls['cd_qtd_tot_parc'].setValue(data.cd_qtd_tot_parc);
           this.form.controls['cd_qtd_parc'].setValue(data.cd_qtd_parc);
-
         },
         (err) => {
           console.log(err);
@@ -114,6 +116,7 @@ export class AlterarDespesaComponent implements OnInit {
     if(this.form.valid){
     if (this.form.value.vl_valor_multa == "") { this.form.value.vl_valor_multa = '0' }
     if (this.form.value.vl_valor_desconto == "") { this.form.value.vl_valor_desconto = '0' }
+    if (this.form.value.fl_despesa_fixa == "Sim"){this.form.value.fl_despesa_fixa="1"} else {this.form.value.fl_despesa_fixa="0"} 
 
     this
       .service

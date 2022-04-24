@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-import { despesa } from 'src/app/models/despesa.model';
 import { DataService } from 'src/app/services/data.service';
 import { Despesa } from '../../model/despesa.model';
 
@@ -19,15 +18,15 @@ export class DespesaPageComponent implements OnInit {
   public busy = false;
   despesas: Despesa[] = [];
 
-
   constructor(
     private data: DataService,
     private router: Router,
     private fb: FormBuilder,
   ) {
     this.form = this.fb.group({
-      cd_mes: [moment().format('MM')],
-      cd_ano: [moment().format('YYYY')]
+      cd_mes: [localStorage.getItem('gestor.mes')],
+      cd_ano: [localStorage.getItem('gestor.ano')]
+      
     });
   }
 
@@ -39,6 +38,16 @@ export class DespesaPageComponent implements OnInit {
     this.vlTotalPago=0;
     this.vlTotalAberto=0;
     this.busy = true;
+
+    localStorage.setItem('gestor.mes', this.form.value.cd_mes);
+    localStorage.setItem('gestor.ano', this.form.value.cd_ano);
+    
+    //this.form.value.cd_mes = localStorage.getItem('gestor.mes');
+    //this.form.value.cd_ano = localStorage.getItem('gestor.ano');
+    
+    console.log("teste4");
+    console.log("this.form.value");
+    console.log(this.form.value);
 
     this.data.getDespesas(this.form.value)
     .subscribe((x) => {
