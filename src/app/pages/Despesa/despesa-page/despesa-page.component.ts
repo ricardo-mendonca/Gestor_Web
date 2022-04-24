@@ -41,13 +41,6 @@ export class DespesaPageComponent implements OnInit {
 
     localStorage.setItem('gestor.mes', this.form.value.cd_mes);
     localStorage.setItem('gestor.ano', this.form.value.cd_ano);
-    
-    //this.form.value.cd_mes = localStorage.getItem('gestor.mes');
-    //this.form.value.cd_ano = localStorage.getItem('gestor.ano');
-    
-    console.log("teste4");
-    console.log("this.form.value");
-    console.log(this.form.value);
 
     this.data.getDespesas(this.form.value)
     .subscribe((x) => {
