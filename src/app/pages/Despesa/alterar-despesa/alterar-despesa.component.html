@@ -61,14 +61,14 @@
                     <div class="col">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" formControlName="vl_valor_desconto">
-                            <label for="floatingInput">desconto</label>
+                            <label for="floatingInput">Desconto</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" mask="00/00/0000" formControlName="dt_vencimento"
                                 [(ngModel)]="dt_vencimento" placeholder="00/00/0000">
-                            <label for="floatingInput">dt_vencimento</label>
+                            <label for="floatingInput">Data Vencimento</label>
                         </div>
                     </div>
 
@@ -77,14 +77,10 @@
                 <div class="row mb-1">
 
                     <div class="col">
-
-                        <div class="form-floating mb-3" >
-                            <select class="form-select" formControlName="fl_despesa_fixa">
-                                <option value="0">Não</option>
-                                <option value="1">Sim</option>
-                            </select>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" readonly="true" formControlName="fl_despesa_fixa"
+                            [(ngModel)]="fl_despesa_fixa">                        
                             <label for="floatingSelectGrid">Despesa fixa?</label>
-                            
                         </div>
 
                     </div>
