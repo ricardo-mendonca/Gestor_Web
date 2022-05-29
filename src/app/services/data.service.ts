@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Security } from '../utils/security.util';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
-import { despesa } from '../models/despesa.model';
 import { Despesa } from '../pages/model/despesa.model';
+import { ResumoDespesa} from '../pages/model/resumoDespesa.model';
 
 @Injectable({
     providedIn: 'root'
@@ -63,17 +63,21 @@ export class DataService {
 
     //#region DESPESAS
 
- //   getDespesas(data: any) {
-//
- //       return this.http
- //       .post(`${this.url}/GetDespesas`, data, { headers: this.composeHeaders() });
- //   }
 
     getDespesas(despesa: Despesa): Observable<Despesa[]> {
 
         return this.http
         .post<Despesa[]>(`${this.url}/GetDespesas`, despesa, { headers: this.composeHeaders() });
     }
+
+    getResumo(data: any): Observable<ResumoDespesa[]>{
+        console.log("data");
+        console.log(data);
+    return this.http
+    .post<ResumoDespesa[]>(`${this.url}/GetDespesasChart`, data, { headers: this.composeHeaders() });
+
+    }
+
 
     CreateDespesa(data: any) {
 
