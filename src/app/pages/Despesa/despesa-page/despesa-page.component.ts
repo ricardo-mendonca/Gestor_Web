@@ -1,10 +1,9 @@
-import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { DataService } from 'src/app/services/data.service';
 import { Despesa } from '../../model/despesa.model';
+import { ResumoDespesa } from '../../model/resumoDespesa.model';
 
 @Component({
   selector: 'app-despesa-page',
@@ -17,6 +16,7 @@ export class DespesaPageComponent implements OnInit {
   public vlTotalAberto: any;
   public busy = false;
   despesas: Despesa[] = [];
+  resumos: ResumoDespesa[] = [];
 
   constructor(
     private data: DataService,
@@ -32,6 +32,7 @@ export class DespesaPageComponent implements OnInit {
 
   ngOnInit() {
     this.submit();
+
   }
 
   submit() {
@@ -45,6 +46,7 @@ export class DespesaPageComponent implements OnInit {
     this.data.getDespesas(this.form.value)
     .subscribe((x) => {
       this.despesas = x;
+
       this.despesas.forEach(despesas => {
         if(despesas.fl_pago =="1"){
           this.vlTotalPago += despesas.vl_valor_parc;
@@ -54,8 +56,21 @@ export class DespesaPageComponent implements OnInit {
         }
       });
     });
+    this.GetResumo();
     this.busy = false;
+    
   }
+
+  GetResumo(){
+    this.data.getResumo(this.form.value).subscribe((x) => {
+      
+      this.resumos = x;
+      console.log("arquivo X");   
+      console.log(x);   
+    });
+   
+  }
+
 
   novaDespesa() {
     this.router.navigate(['/despesa/novadespesa'])
@@ -68,6 +83,10 @@ export class DespesaPageComponent implements OnInit {
   getFormataPreco(price: number) {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
   }
+
+
 }
+
+
 
 

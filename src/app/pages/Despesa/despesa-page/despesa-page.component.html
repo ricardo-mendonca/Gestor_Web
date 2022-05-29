@@ -52,33 +52,34 @@
                     </div>
                 </div>
             </div>
-
         </form>
 
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm border-danger">
-                <div class="card-header py-3 text-white bg-danger border-danger">
-                  <h4 class="my-0 fw-normal">Contas em aberto</h4>
+                <div class="card mb-4 rounded-3 shadow-sm border-danger">
+                    <div class="card-header py-3 text-white bg-danger border-danger">
+                        <h4 class="my-0 fw-normal">Contas em aberto</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">{{vlTotalAberto | currency }}<small
+                                class="text-muted"></small></h1>
+                    </div>
                 </div>
-                <div class="card-body">
-                  <h1 class="card-title pricing-card-title">{{vlTotalAberto  | currency }}<small class="text-muted"></small></h1>
-                </div>
-              </div>
             </div>
             <div class="col">
-               </div>
-            <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                <div class="card-header py-3 text-white bg-primary border-primary">
-                  <h4 class="my-0 fw-normal">Contas pagas</h4>
-                </div>
-                <div class="card-body">
-                  <h1 class="card-title pricing-card-title">{{vlTotalPago  | currency }}<small class="text-muted "></small></h1>
-                </div>
-              </div>
             </div>
-          </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-white bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Contas pagas</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">{{vlTotalPago | currency }}<small
+                                class="text-muted "></small></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <table class="table table-sm table-striped table-hover">
             <thead>
@@ -91,7 +92,6 @@
                     <th>Desp Paga?</th>
                     <th>Valor</th>
                     <th>Editar</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -106,10 +106,9 @@
                                 Sim
                             </div>
                         </ng-template>
-
                         <ng-template #userLoggedOut>
                             <div>
-                                
+
                                 Não
                             </div>
                         </ng-template>
@@ -120,7 +119,6 @@
                                 Sim
                             </div>
                         </ng-template>
-
                         <ng-template #userLoggedOut class="btn btn-outline-danger btn-sm">
                             <div class="btn btn-outline-danger btn-sm">
                                 Não
@@ -133,5 +131,41 @@
                 </tr>
             </tbody>
         </table>
+
+    </div>
+
+
+    <div>
+      <br >
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col">
+                <h3 class="btn-block">Resumo por Categoria</h3>
+                <table class="table table-sm table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>descricao</th>
+                            <th>Valor</th>
+                            <th>Percentual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let resumo of resumos ">
+                            <td>{{resumo.id}}</td>
+                            <td class="left-align">{{resumo.ds_descricao }}</td>
+                            <td class="left-right">{{resumo.gastoMes | currency}}</td>
+                            <td class="left-right">{{resumo.perc | number}} %</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+        </div>
+
+
+
     </div>
 </div>
